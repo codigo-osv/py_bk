@@ -1,0 +1,19 @@
+
+- Backup en .tar:
+
+$ pg_dump -F t <database> > /home/.../<backup.tar>
+
+-F = formato del archivo de salida
+t = .tar
+c = custom (permite restaurar sólo tablas)
+<database> = base de datos sobre la cual se hace el backup
+
+--------------
+
+- Restore:
+* Crear la db en la cual se va a volcar el backup dentro de psql: CREATE DATABASE <nueva_db>
+$ pg_restore --dbname=<nueva_db> /home/.../<backup.tar>
+
+http://www.postgresqltutorial.com/postgresql-backup-database/
+
+http://www.postgresqltutorial.com/postgresql-restore-database/
