@@ -29,5 +29,5 @@ for file in flist:
     if dlmod < rng:
        os.remove(wp)
 
-#copy backup files to external drive
-subprocess.call(['cp', '-r', PATH, '/media/observatorio/OSV_Backup'])
+#copy backup files & homedir to external drive
+subprocess.call(['cp', '-r', '~', '/media/observatorio/OSV_Backup'])
