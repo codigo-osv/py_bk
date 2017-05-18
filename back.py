@@ -30,4 +30,4 @@ for file in flist:
        os.remove(wp)
 
 #copy backup files & homedir to external drive
-subprocess.call(['cp', '-r', '~', '/media/observatorio/OSV_Backup'])
+subprocess.call(['rsync', '-av', '~', '/media/observatorio/OSV_Backup'])
