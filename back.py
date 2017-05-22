@@ -7,16 +7,16 @@ PATH = '/home/observatorio/Dropbox/back/'
 FECHA = datetime.datetime.now().strftime('%d-%b-%Y_%H:%M')
 
 
-PFA_DGC = '{}backup_pfa_dgc_{}.tar'.format(PATH, FECHA)
+PFA_DGC = '{}backup_pfa_dgc_{}.backup'.format(PATH, FECHA)
 PFA_DGC95 = '{}backup_postgres95_pfa_dgc_{}.backup'.format(PATH, FECHA)
 FEU = '{}backup_feu_{}.tar'.format(PATH, FECHA)
 
 subprocess.call(['/usr/lib/postgresql/9.5/bin/pg_dump',
 	         '--format=c', '--port=5433',
                  '--dbname=pfa_dgc', '--file=' + PFA_DGC95])
-subprocess.call(['pg_dump', '--format=t',
-                 '--dbname=pfa_dgc', '--file=' + PFA_DGC])
-subprocess.call(['pg_dump', '--format=t',
+subprocess.call(['/usr/lib/postgresql/9.5/bin/pg_dump', 
+                 '--format=c',
+		 '--port=5433',
                  '--dbname=feu', '--file=' + FEU])
 
 #delete files older than 15 days
