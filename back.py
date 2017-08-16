@@ -31,3 +31,7 @@ for file in flist:
 
 #copy backup files & homedir to external drive
 subprocess.call(['rsync', '-av', '/home/observatorio', '/media/observatorio/OSV_Backup'])
+#on mondays, also copy to the weekly folder
+if datetime.datetime.now().weekday() == 0:
+    subprocess.call(['cp', PFA_DGC95, '/media/observatorio/backup_semanal'])
+
