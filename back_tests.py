@@ -9,8 +9,8 @@ class TestBack(unittest.TestCase):
     def setUpClass(self):
         subprocess.call(["mkdir", "testdir", "testdir2", "testdir3"])
         subprocess.call(["touch", "testdir2/testfile"])
-        subprocess.call(['touch', '-m', '-d', "8 days ago", 'testdir3/testfile'''])
-        subprocess.call(['touch', '-m', '-d', "2 days ago", 'testdir3/testfile1'''])
+        subprocess.call(['touch', '-m', '-d', "8 days ago", 'testdir3/testfile'])
+        subprocess.call(['touch', '-m', '-d', "2 days ago", 'testdir3/testfile1'])
 
     def test_empty_dir(self):
         res = funciones.older_than("testdir/", 666)
