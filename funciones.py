@@ -10,10 +10,10 @@ def older_than(path: str, days: int) -> list or bool:
     days:int: cantidad de dias de antigüedad a buscar
     """
     result = []
-    file_list = os.listdir(PATH)
+    file_list = os.listdir(path)
     time_range = datetime.datetime.now() - datetime.timedelta(days=days)
     for file in file_list:
-        path_to_file = PATH + file
+        path_to_file = path + file
         file_time = datetime.datetime.fromtimestamp(os.stat(path_to_file).st_mtime)
         if file_time < time_range:
             result.append(path_to_file)

@@ -10,6 +10,7 @@ class TestBack(unittest.TestCase):
         subprocess.call(["mkdir", "testdir", "testdir2", "testdir3"])
         subprocess.call(["touch", "testdir2/testfile"])
         subprocess.call(['touch', '-m', '-d', "8 days ago", 'testdir3/testfile'''])
+        subprocess.call(['touch', '-m', '-d', "2 days ago", 'testdir3/testfile1'''])
 
     def test_empty_dir(self):
         res = funciones.older_than("testdir/", 666)
@@ -19,7 +20,7 @@ class TestBack(unittest.TestCase):
         res = funciones.older_than("testdir2/", 666)
         self.assertFalse(res)
 
-    def test_older_files(self):
+    def test_older_and_newer_files(self):
         res = funciones.older_than("testdir3/", 7)
         self.assertEqual(res, ["testdir3/testfile"])
 
