@@ -56,13 +56,17 @@ class TimedDirectory:
         Hace la comparación sobre el último elemento de _timed_list()
         ya que la lista que devuelve esa función está ordenada de mas
         antiguo a mas reciente.
+        En caso de que _timed_list() devuelva una lista vacía, se devuelve True,
+        indicando que el directorio esta vacío.
         :param older_than: int: cantidad de dias de antigüedad
         a calcular.
         """
         time_range = self._current_time - datetime.timedelta(days=older_than)
-        return self._timed_list()[-1][1] < time_range
+        try:
+            result = self._timed_list()[-1][1] < time_range
+        except IndexError:
+            result = True
+        return result
 
-
-
-#print(TimedDirectory('/home/ivan/cosas/')._timed_list())
-print(TimedDirectory('/home/ivan/cosas').path)
+#print(TimedDirectory('').oldest_file(1))
+#print(TimedDirectory('/home/ivan/cosas').path)
