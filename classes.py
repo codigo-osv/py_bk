@@ -49,7 +49,7 @@ class TimedDirectory:
             if file[1] < time_range
         ]
 
-    def oldest_file(self, older_than: int) -> bool:
+    def newest_file_older_than(self, older_than: int) -> bool:
         """
         Devuelve True si el archivo más antiguo del directorio
         es más antiguo que la cantidad de días ingresados.
@@ -68,5 +68,5 @@ class TimedDirectory:
             result = True
         return result
 
-#print(TimedDirectory('').oldest_file(1))
+#print(TimedDirectory('').newest_file_older_than(1))
 #print(TimedDirectory('/home/ivan/cosas').path)
