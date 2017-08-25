@@ -51,7 +51,7 @@ class TimedDirectory:
 
     def newest_file_older_than(self, older_than: int) -> bool:
         """
-        Devuelve True si el archivo más antiguo del directorio
+        Devuelve True si el archivo más nuevo del directorio
         es más antiguo que la cantidad de días ingresados.
         Hace la comparación sobre el último elemento de _timed_list()
         ya que la lista que devuelve esa función está ordenada de mas
