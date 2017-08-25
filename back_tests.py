@@ -13,15 +13,15 @@ class TestBack(unittest.TestCase):
         subprocess.call(['touch', '-m', '-d', "2 days ago", 'testdir3/testfile1'])
 
     def test_empty_dir(self):
-        res = funciones.older_than("testdir/", 666)
+        res = funciones.older_than_list("testdir/", 666)
         self.assertFalse(res)
 
     def test_no_older_files(self):
-        res = funciones.older_than("testdir2/", 666)
+        res = funciones.older_than_list("testdir2/", 666)
         self.assertFalse(res)
 
     def test_older_and_newer_files(self):
-        res = funciones.older_than("testdir3/", 7)
+        res = funciones.older_than_list("testdir3/", 7)
         self.assertEqual(res, ["testdir3/testfile"])
 
     @classmethod

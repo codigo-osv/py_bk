@@ -1,7 +1,8 @@
 import os
 import datetime
 
-def older_than(path: str, days: int) -> list or bool:
+
+def older_than_list(path: str, days: int) -> list:
     """
     Retorna list[str] de los paths a los archivos mas viejos
     que los dias representados por days
@@ -17,8 +18,6 @@ def older_than(path: str, days: int) -> list or bool:
         file_time = datetime.datetime.fromtimestamp(os.stat(path_to_file).st_mtime)
         if file_time < time_range:
             result.append(path_to_file)
-    if len(result) == 0:
-        return False
     return result
 
 
