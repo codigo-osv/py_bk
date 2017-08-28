@@ -1,7 +1,7 @@
 import datetime
 import os
 import subprocess
-from funciones import older_than_list
+import classes
 
 FECHA = datetime.datetime.now().strftime('%d-%b-%Y_%H:%M')
 PATH = '/home/observatorio/Dropbox/back/'
@@ -16,15 +16,17 @@ subprocess.call(['/usr/lib/postgresql/9.5/bin/pg_dump',
                  '--format=c', '--port=5433',
                  '--dbname=pfa_dgc', '--file=' + PFA_DGC95])
 subprocess.call(['pg_dump', '--format=t',
-                 '--dbname=feu', '--file=' + FEU])
+                '--dbname=feu', '--file=' + FEU])
 
 # delete files older than 15 days
-for file in older_than_list(PATH, 15):
+td = classes.TimedDirectory(PATH)
+for file in td.oldest_files_list(15):
     os.remove(file)
 
 # copy backup files & homedir to external drive
 subprocess.call(['rsync', '-av', PATH_HOME, PATH_DIARIO])
 
 # on mondays or after 1 week, also copy to the weekly folder
-if datetime.datetime.now().weekday() == 0 or older_than_list(PATH_SEMANAL, 7):
+td.path = PATH_SEMANAL
+if datetime.datetime.now().weekday() == 0 or td.newest_file_older_than(7):
     subprocess.call(['cp', PFA_DGC95, PATH_SEMANAL])
